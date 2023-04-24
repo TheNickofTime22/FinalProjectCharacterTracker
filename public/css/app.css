@@ -1,0 +1,88 @@
+*,
+*::before,
+*::after {
+    /* box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: 900;
+    color: rgb(44, 44, 44); */
+    filter: drop-shadow(1px 1px 1px #0000001e);
+}
+
+.edit-record-btn {
+    background-color: rgb(255, 221, 134);
+    box-shadow: 0 0 5px 0 black;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 900;
+}
+
+.delete-record-btn {
+    background-color: rgb(255, 109, 104);
+    box-shadow: 0 0 5px 0 black;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 900;
+}
+
+.class_card {
+    background: url('https://static.vecteezy.com/system/resources/previews/012/981/794/original/old-parchment-paper-sheet-vintage-aged-or-texture-background-png.png');
+    background-size: contain;
+    z-index: 0;
+
+}
+
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
+
+.animate {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: both
+}
+
+.animateFadeUp {
+    opacity: 0
+}
+
+.fadeUp {
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+}
+
+
+.class_img {
+    -webkit-mask-image: linear-gradient(to left, #fff, transparent);
+    z-index: 1;
+    margin-right: 10px;
+    margin-top: 10px;
+    opacity: .7;
+}
+
+body {
+    background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/fancy-cushion.png');
+    background-size: contain;
+}
+
+/* .create_btn {
+    position: fixed;
+    background-color: #f00;
+    height: 100px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+} */
+
+/*               CHARACTER CARDS                   */
+
+.character-card:hover {
+    background-color: rgb(255, 198, 198)  ;
+    cursor: pointer;
+}

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CharacterResource;
+use App\Http\Resources\CharactersResource;
 use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +16,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $characters = Auth::user()->characters;
-        return $characters;
+        return new CharactersResource(Auth::user()->characters);
     }
 
     /**
@@ -37,7 +38,7 @@ class CharacterController extends Controller
     public function show(Character $character)
     {
         if($character->user_id == Auth::user()->id){
-            return $character;
+            return new CharacterResource($character);
         }
         abort(403);
     }

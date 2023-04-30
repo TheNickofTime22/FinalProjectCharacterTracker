@@ -14,9 +14,30 @@ class CharacterController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new CharactersResource(Auth::user()->characters);
+        $query = Auth::user()->characters();
+
+        if($request->input('sort')){
+            $columns = explode(',', $request->input('sort'));
+            foreach($columns as $column){
+                if(substr($column, 0, 1) == '-'){
+
+                    $query = $query->orderBy(ltrim($column, '-'), 'desc');
+
+                } else {
+
+                    $query = $query->orderBy($column, 'asc');
+
+                }
+            }
+        }
+
+        if($request->input('page')){
+            return new CharactersResource($query->paginate(2));
+        }
+        return new CharactersResource($query->get());
+
     }
 
     /**

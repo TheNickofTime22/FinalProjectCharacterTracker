@@ -18,16 +18,25 @@ use Illuminate\Validation\ValidationException;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
 // get all characters of a user
-Route::middleware('auth:sanctum')->get('/user/characters', function (Request $request) {
-    $characters = Character::where('user_id', $request->user()->id)->get();
-    return $characters;
+Route::middleware('auth:sanctum')->group(function(){
+    Route::prefix('v1')->group(function(){
+        Route::get('/user/characters', function (Request $request) {
+            $characters = Character::where('user_id', $request->user()->id)->get();
+            return $characters;
+        });
+    });
+    Route::prefix('v2')->group(function(){
+
+    });
+
 });
+
 
 // create a character
 Route::middleware('auth:sanctum')->post('/characters', function (Request $request) {

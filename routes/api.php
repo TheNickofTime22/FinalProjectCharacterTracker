@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\CharacterController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Character;
@@ -18,18 +20,26 @@ use Illuminate\Validation\ValidationException;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
+
 // get all characters of a user
 Route::middleware('auth:sanctum')->group(function(){
+
+
     Route::prefix('v1')->group(function(){
-        Route::get('/user/characters', function (Request $request) {
-            $characters = Character::where('user_id', $request->user()->id)->get();
-            return $characters;
-        });
+
+
+        Route::apiResource('characters', CharacterController::class);
+
+        // Route::get('/user/characters', function (Request $request) {
+        //     $characters = Character::where('user_id', $request->user()->id)->get();
+        //     return $characters;
+        // });
+
     });
     Route::prefix('v2')->group(function(){
 
@@ -74,10 +84,12 @@ Route::post('/login/token', function (Request $request) {
 
     $tokenText = $user->createToken($request->device_name)->plainTextToken;
     return ['token' => $tokenText];
+
 });
 
 Route::post('/register/token', function (Request $request) {
     $request->validate([
+        'name' => 'required',
         'email' => 'required|email',
         'password' => 'required',
         'device_name' => 'required',

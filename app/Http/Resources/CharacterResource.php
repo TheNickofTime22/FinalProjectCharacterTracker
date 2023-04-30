@@ -26,7 +26,8 @@ class CharacterResource extends JsonResource
                 "char_background" => $this->char_background,
                 "char_stats" => $this->char_stats,
                 "char_experience" => $this->char_experience,
-                "char_nextLevel" => $this->char_nextLevel
+                "char_nextLevel" => $this->char_nextLevel,
+
             ],
 
         ];

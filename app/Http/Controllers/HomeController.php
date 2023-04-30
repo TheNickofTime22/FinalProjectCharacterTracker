@@ -45,7 +45,7 @@ class HomeController extends Controller
 
             $character = new Character([
                 'player_name' => $user->name,
-                'char_name' => 'Default',
+                'char_name' => 'Default2',
                 'char_class' => 'Wizard',
                 'char_background' => 'Sailor',
                 'char_species' => 'Elf',

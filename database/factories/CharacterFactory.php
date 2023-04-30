@@ -33,7 +33,7 @@ class CharacterFactory extends Factory
             'char_stats' => implode(", ", $stats),
             'char_experience' => fake()->numberBetween($nextLevel[($level - 1)], (($nextLevel[$level]) - 1)),
             'char_nextLevel' => $nextLevel[$level],
-            'user_id' => 1
+
 
         ];
     }

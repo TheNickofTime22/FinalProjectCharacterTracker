@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('char_stats');
             $table->integer('char_experience');
             $table->integer('char_nextLevel');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');;
             $table->timestamps();
 
         });

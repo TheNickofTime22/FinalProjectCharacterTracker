@@ -48,24 +48,6 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 
-// create a character
-Route::middleware('auth:sanctum')->post('/characters', function (Request $request) {
-    $user = $request->user();
-    $characterData = $request->only('char_name', 'char_class', 'char_stats', 'char_species', 'char_level', 'char_background', 'char_experience', 'char_nextLevel');
-    $characterData['user_id'] = $user->id;
-    $character = Character::create($characterData);
-    return response()->json(['message' => 'Character created successfully', 'character' => $character]);
-});
-
-// update a character
-Route::middleware('auth:sanctum')->put('/characters/{id}', function (Request $request, $id) {
-    $user = $request->user();
-    $character = Character::where('id', $id)->where('user_id', $user->id)->firstOrFail();
-    $characterData = $request->only('char_name', 'char_class', 'char_stats', 'char_species', 'char_level', 'char_background', 'char_experience', 'char_nextLevel');
-    $character->update($characterData);
-    return response()->json(['message' => 'Character updated successfully', 'character' => $character]);
-});
-
 // login as a user and get a token
 Route::post('/login/token', function (Request $request) {
     $request->validate([

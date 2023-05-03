@@ -69,6 +69,16 @@ Route::post('/login/token', function (Request $request) {
 
 });
 
+Route::post('/login/test', function (Request $request) {
+    if(auth('sanctum')->user() == null){
+        return ['valid' => false];
+    } else {
+        return ['valid' => true];
+    }
+
+});
+
+
 Route::post('/register/token', function (Request $request) {
     $request->validate([
         'name' => 'required',
